@@ -6,11 +6,8 @@
     <meta charset="UTF-8">
     <title>Psychic Game</title>
     
-<<<<<<< HEAD
     <!-- The assignment details indicated we needed an external js file. A fellow student suggested I research querySelector and innerHTML and after a long day of trial and error I found a way to drastically reduce the js code. I hope that's ok. If not, I can go back and create separate files. Also I promise I'll commit more as I work moving forward.  Spending my college time as a journalism major instilled a strong instinct to keep editing and polishing a paper/project and only submit once it was as pretty as possible.-->
-=======
-    <!-- The assignment details indicated we needed an external js file. A fellow student suggested I research querySelector and innerHTML and after a long day of trial and error (also with the String.fromCharCode method, thank you stackoverflow), I found a way to drastically reduce the js code. I hope that's ok. If not, I can go back and create separate files. -->
->>>>>>> 27da69e7d555b4a4419d83f3d25faf80d6ed6912
+
 
     </head>
 
@@ -44,11 +41,7 @@
             //create a wrapping function that starts the game when a key is pressed
             document.onkeyup = function(event) {
                 //create variable for the user's guess
-<<<<<<< HEAD
                 var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-=======
-                var userGuess = String.fromCharCode(event.keyCode).toLowerCase();//this line took a lot of reading on stack-overflow 
->>>>>>> 27da69e7d555b4a4419d83f3d25faf80d6ed6912
                 //create a variable to select a random letter from the array
                 var computerGuess = allLetters[Math.floor(Math.random()*allLetters.length)];
                 
