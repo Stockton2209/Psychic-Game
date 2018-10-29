@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Psychic Game</title>
     
-    <!-- The assignment details indicated we needed an external js file. A fellow student suggested I research querySelector and innerHTML and after a long day of trial and error, I found a way to drastically reduce the js code. I hope that's ok. If not, I can go back and create separate files. -->
+    <!-- The assignment details indicated we needed an external js file. A fellow student suggested I research querySelector and innerHTML and after a long day of trial and error (also with the String.fromCharCode method, thank you stackoverflow), I found a way to drastically reduce the js code. I hope that's ok. If not, I can go back and create separate files. -->
 
     </head>
 
@@ -38,7 +38,7 @@
             var allLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
             document.onkeyup = function(event) {
-                var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+                var userGuess = String.fromCharCode(event.keyCode).toLowerCase();//this line took a lot of reading on stack-overflow 
                 var computerGuess = allLetters[Math.floor(Math.random()*allLetters.length)];
 
                 function userWin() {
