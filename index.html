@@ -1,33 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en-US">
+
+    <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet"   href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-
-    <title>The Psychic Game</title>
-
-</head>
-
-<body>
-
-    <script>
-        var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-        var randomLetter = getRandomLetter();
-        var guess = "";
-        var guessCount = 0;
-        var correctGuess = false;
-
-        function getRandomLetter() {
-            
-        }
-        
-        </script>
+    <title>Psychic Game</title>
     
-</body>
+    <!-- The assignment details indicated we needed an external js file. A fellow student suggested I research querySelector and innerHTML and after a long day of trial and error, I found a way to drastically reduce the js code. I hope that's ok. If not, I can go back and create separate files. -->
+
+    </head>
+
+    <body>
+
+        <div class="theGame">
+
+            <h1>The Psychic Powers Testing Game!</h1>
+
+            <p> Let's see if you have the gift. Guess the letter I see in my mind... 
+            </p>
+            <p class="wins"> Wins: 
+            </p>
+            <p class="losses"> Losses: 
+            </p>
+            <p class="guesses-left"> Guesses left: 9
+            </p>
+            <p class="letters-guessed"> Letters guessed: 
+                <span class="letters"></span>
+            </p>
+
+        </div>
+
+        <script type="text/javascript">
+
+            var guesses = 9;
+            var wins = 0;
+            var losses = 0;
+            var allLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+            document.onkeyup = function(event) {
+                var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+                var computerGuess = allLetters[Math.floor(Math.random()*allLetters.length)];
+
+                function userWin() {
+                    wins++;
+                    document.querySelector(".wins").innerHTML = "Wins: " + wins;
+                    resetCounter();
+                    document.querySelector(".letters").innerHTML = " ";
+                }
+                function userLose() {
+                    losses++;
+                    document.querySelector(".losses").innerHTML = "Losses: " + losses;
+                    resetCounter();
+                    document.querySelector(".letters").innerHTML = " ";
+                }
+                function resetCounter() {
+                    guesses = 9;
+                    document.querySelector(".guesses-left").innerHTML = "Guesses left: " + guesses;
+                }
+                if (userGuess === computerGuess) {
+                    userWin();
+                } else {
+                    guesses--;
+                    document.querySelector(".guesses-left").innerHTML = "Guesses left: " + guesses;
+                    document.querySelector(".letters").append(" " + userGuess + ", ");
+                }
+                if (guesses === 0) {
+                    userLose();
+                }
+            };
+            
+        </script>
+
+    </body>
 </html>
