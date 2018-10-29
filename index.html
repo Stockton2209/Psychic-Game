@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Psychic Game</title>
     
-    <!-- The assignment details indicated we needed an external js file. A fellow student suggested I research querySelector and innerHTML and after a long day of trial and error, I found a way to drastically reduce the js code. I hope that's ok. If not, I can go back and create separate files. -->
+    <!-- The assignment details indicated we needed an external js file. A fellow student suggested I research querySelector and innerHTML and after a long day of trial and error I found a way to drastically reduce the js code. I hope that's ok. If not, I can go back and create separate files. Also I promise I'll commit more as I work moving forward.  Spending my college time as a journalism major instilled a strong instinct to keep editing and polishing a paper/project and only submit once it was as pretty as possible.-->
 
     </head>
 
@@ -31,40 +31,64 @@
         </div>
 
         <script type="text/javascript">
-
+            //create global variables for wins, losses, guesses, and an array of letters to choose from
             var guesses = 9;
             var wins = 0;
             var losses = 0;
             var allLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
+            //create a wrapping function that starts the game when a key is pressed
             document.onkeyup = function(event) {
+                //create variable for the user's guess
                 var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+                //create a variable to select a random letter from the array
                 var computerGuess = allLetters[Math.floor(Math.random()*allLetters.length)];
-
+                
+                //a function for if the user wins
                 function userWin() {
+                    //create a wins counter to track the number of wins
                     wins++;
+                    //select and update the text of the wins html with the new number of wins
                     document.querySelector(".wins").innerHTML = "Wins: " + wins;
+                    //reset the game
                     resetCounter();
+                    //reset the letters guessed to empty
                     document.querySelector(".letters").innerHTML = " ";
                 }
+                //a function to run if the user loses
                 function userLose() {
+                    //create a loss counter
                     losses++;
+                    //select and update the html to show the number of losses
                     document.querySelector(".losses").innerHTML = "Losses: " + losses;
+                    //reset the game
                     resetCounter();
+                    //reset the letters guessed to an empty array
                     document.querySelector(".letters").innerHTML = " ";
                 }
+                //a function to reset to starting values
                 function resetCounter() {
+                    //return the number of guesses to default
                     guesses = 9;
+                    //update the guesses left to the above value
                     document.querySelector(".guesses-left").innerHTML = "Guesses left: " + guesses;
                 }
+                //if we guess the right button
                 if (userGuess === computerGuess) {
+                    //run the userWin function
                     userWin();
+                //if we don't guess correctly...
                 } else {
+                    //the number of guesses counts down
                     guesses--;
+                    //update and display the number of guesses left on the screen (in the html)
                     document.querySelector(".guesses-left").innerHTML = "Guesses left: " + guesses;
+                    //add letters already guessed to the "letters" span
                     document.querySelector(".letters").append(" " + userGuess + ", ");
                 }
+                //if we run out of guesses...
                 if (guesses === 0) {
+                    //run the userLose function
                     userLose();
                 }
             };
